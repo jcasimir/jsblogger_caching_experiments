@@ -7,4 +7,4 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Tag.generate_samples(10)
-Article.generate_samples(10)
+Article.generate_samples(1000)

@@ -1,9 +1,10 @@
 class DashboardController < ApplicationController
+  caches_page :show
+  
   def show
     @articles = Article.for_dashboard
     @article_count = Article.count
     @article_word_count = Article.total_word_count
-    @most_popular_article = Article.most_popular
 
     @comments = Comment.for_dashboard
     @comment_count = Comment.count

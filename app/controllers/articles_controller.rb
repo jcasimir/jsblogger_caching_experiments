@@ -14,8 +14,9 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(params[:article])
     if @article.save
+      expire_fragment("article_statistics")
       flash[:notice] = "Article was created."
-      redirect_to articles_path
+      redirect_to root_path
     else
       render :new
     end
@@ -28,6 +29,8 @@ class ArticlesController < ApplicationController
   def update
     @article = Article.find params[:id]
     if @article.update_attributes(params[:article])
+      expire_fragment("article_statistics")
+      expire_page root_path
       flash[:notice] = "Article was updated."
       redirect_to article_path(@article)
     else
