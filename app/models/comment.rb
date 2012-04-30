@@ -14,10 +14,15 @@ class Comment < ActiveRecord::Base
   end
 
   def self.total_word_count
-    all.inject(0) {|total, a| total += a.word_count }
+    find_cached_total_word_count ||
+      all.inject(0) {|total, a| total += a.word_count }
   end
 
 private
+
+  def self.find_cached_total_word_count
+    $redis.get('comment_total_word_count').to_i
+  end
 
   def enqueue_total_word_count
     Resque.enqueue(CommentTotalWordCount)

@@ -5,4 +5,8 @@ class CommentsController < ApplicationController
     flash[:notice] = "Your comment was added."
     redirect_to article_path(article)
   end
+
+  def count
+    render :text => Comment.count
+  end
 end

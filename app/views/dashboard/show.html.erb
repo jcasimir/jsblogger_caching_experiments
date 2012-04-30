@@ -33,6 +33,13 @@
   </div>
 <% end %>
 
+<div class="dashboard_block" id='statistics'>
+  <h2>Comment Statistics</h2>
+  <ul>
+    <li id='total_comments'>Total comments: <span id="comment_count"></span></li>
+  </ul>
+</div>
+
 <% cache('article_statistics') do %>
   <div class="dashboard_block" id='statistics'>
     <h2>Site-Wide Statistics</h2>
