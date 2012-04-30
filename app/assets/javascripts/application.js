@@ -9,6 +9,8 @@
 //= require_tree .
 
 $(document).ready( function(){
-  var counter = 
-  $("span#comment_count").load('comments/count');
+  $.getJSON("comments/count", function(data){
+    $("span#comment_count").text(data['count']);
+    $("li#first_comment").append(" by " + data['first']['author_name'])  
+  });
 });

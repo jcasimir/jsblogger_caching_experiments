@@ -1,7 +1,9 @@
 JsbloggerCodemash::Application.routes.draw do
   resources :articles
   resources :comments do
-    get 'count', :to => "comments#count", :on => :collection
+    collection do
+      get 'count', :to => "comments_api#count"
+    end
   end
   resource  :dashboard
 
